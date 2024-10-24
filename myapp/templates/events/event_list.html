@@ -1,0 +1,72 @@
+{% extends 'events/base.html' %}
+
+{% block content %}
+<h1>Events</h1>
+
+<div class="card">
+    {% for event in eventss %}
+<div>
+    <div class="card-header">
+        <h2>{{event.name}}</h2>
+    </div>
+    <div class="card-body">
+      
+      <p class="card-text"><br>
+        
+        <ul>
+        
+            <li>Date:{{ event.event_date }}</li>
+            <li>Venue:{{ event.venue.name }}</li>
+            <li>Manager:{{ event.manager }}</li>
+            <li>Description:{{ event.description }}</li>
+            <li>Attendes:<br>{% for user in event.attendes.all %}
+                {{user}}<br>
+                {% endfor %}
+            </li>
+        </ul>
+        <div class="card-footer text muted">
+            <a href="{% url 'update-e' event.id %}" class="btn btn-outline-secondary btn-sm">Update</a>
+        
+            <a href="{% url 'delete-e' event.id %}" class="btn btn-outline-danger btn-sm">Delete</a>
+        </div>
+    </br>
+</br>
+        {% endfor %}
+    </br>
+</br>
+        </p>
+    </ul>
+</div> 
+
+    </div>
+</ul>
+  </div>
+
+
+
+
+{% endblock %}
+
+
+
+
+<!-- 
+<br>
+<ul>
+{% for event in eventss %}
+<ul>
+<strong>{{event.name}}</strong>
+    <li>Date:{{ event.event_date }}</li>
+    <li>Venue:{{ event.venue }}</li>
+    <li>Manager:{{ event.manager }}</li>
+    <li>Description:{{ event.description }}</li>
+    <li>Attendes:<br>{% for user in event.attendes.all %}
+        {{user}}<br>
+        {% endfor %}
+    </li>
+</ul>
+<br>
+{% endfor %}
+</ul> -->
+
+ 

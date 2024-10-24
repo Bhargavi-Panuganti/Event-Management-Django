@@ -1,0 +1,29 @@
+{% extends 'events/base.html' %}
+
+{% block content %}
+    <center>
+<h1>Venue</h1>
+<div class="card">
+    <div class="card-header">
+        {% for i in obj %}
+        <strong>{{i.name}}</strong>
+    </div>
+    <div class="card-body">
+         Venue Place:{{i.name}}</br>
+        Address:{{i.address}}</br>
+        Email-Address:{{i.email_address}}</br>
+        Conatact No:{{i.phone}}</br>
+        
+    </div>
+    <a href="{% url 'update-v' i.id %}" class="btn btn-outline-secondary btn-sm">Update</a>
+</br>
+    <a href="{% url 'delete-v' i.id %}" class="btn btn-outline-danger btn-sm">Delete</a>
+  </div>
+  </center>
+
+
+
+    </center>
+    {% endfor %}
+<br/>
+{% endblock %}
