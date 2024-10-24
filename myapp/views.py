@@ -121,6 +121,22 @@ def venue_list(request):
     # In case we didn't enter anything in the search bar
     else:
         return render(request,'events/venue_list.html',{ })
+    
+from django.core.paginator import Paginator
+def list_venues(request):
+	#venue_list = Venue.objects.all().order_by('?')
+	venue_list = Venue.objects.all()
+
+	# Set up Pagination
+	p = Paginator(Venue.objects.all(), 3)
+	page = request.GET.get('page')
+	venues = p.get_page(page)
+	nums = "a" * venues.paginator.num_pages
+	return render(request, 'events/venue.html', 
+		{'venue_list': venue_list,
+		'venues': venues,
+		'nums':nums}
+		)
 def show_venue(request,index):
     venue_obj=Venue.objects.filter(name__contains=index)
     return render(request,'events/show_venue.html',{'obj':venue_obj})

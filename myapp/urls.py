@@ -18,5 +18,6 @@ urlpatterns=[
     path('temp/',views.temp),
     path('drinks/<str:dish>',views.men),
     path('index',views.index),
+    path('venuesList',views.list_venues,name='venues_list'),
     # path('cal/',views.cal),
 ]

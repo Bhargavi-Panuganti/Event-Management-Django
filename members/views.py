@@ -22,13 +22,17 @@ def login_user(request):
         return render(request,'mem/login.html',{})
 
 def Register(request):
-    form=RegisterUserForm()
+    
     if request.method=='POST':
         form=RegisterUserForm(request.POST)
         if form.is_valid():
-            user=form.save()
+            form.save()
+            username=form.cleaned_data['username']
+            password=form.cleaned_data['password1']
+            user=authenticate(username=username,password=password)
             login(request,user)
-            return HttpResponse('Success')
+            messages.success(request,('Registration Successful !!'))
+            return redirect('cal')
     else:
         form=RegisterUserForm()
     return render(request,'mem/register.html',{'form':form})
